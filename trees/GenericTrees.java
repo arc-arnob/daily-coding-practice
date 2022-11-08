@@ -10,8 +10,12 @@ public class Main {
         int [] arr = {10, 20, -1, 30, 50, -1, 60, -1, -1, 40, -1, -1};
         
         // Construct a tree = 
-        Node tree = constructTree(arr);
-        display(tree);
+        Node root = constructTree(arr);
+        
+        display(root);
+        
+        // int size = size(root);
+        // System.out.println("Size of the tree == " + size);
     }
     
     public static void display (Node root) {
@@ -30,7 +34,7 @@ public class Main {
     public static Node constructTree (int [] arr ) {
         
         /*
-        
+        Algorithm - 
         1. Pass the element - 
         2.
             if element is not -1 -> 
@@ -60,5 +64,18 @@ public class Main {
             }
         }
         return root;
+    }
+    public static int size(Node root) {
+        /*
+        Algorithm - 
+            size of a tree equals sum of sizes of each children + 1 (size of the node)
+        */
+        int size = 0;
+        for (Node child : root.children) {
+            int sizeOfChild = size(child);
+            size += sizeOfChild;
+        }
+        size += 1;
+        return size;
     }
 }
