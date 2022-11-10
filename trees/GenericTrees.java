@@ -12,10 +12,16 @@ public class Main {
         // Construct a tree = 
         Node root = constructTree(arr);
         
+        // Displays a tree
         display(root);
         
+        // Returns size of the tree
         // int size = size(root);
         // System.out.println("Size of the tree == " + size);
+
+        // Returns Max in a tree-
+        int max = max(root);
+        System.out.println("Max in the tree == " + max);
     }
     
     public static void display (Node root) {
@@ -77,5 +83,26 @@ public class Main {
         }
         size += 1;
         return size;
+    }
+
+    public static int max(Node root) {
+        /* 
+         Algorithm - 
+         Max in a tree can be calculated as - MAX(maximum in child nodes, root)
+         */
+
+         int max = Integer.MIN_VALUE;
+
+         for (Node child : root.children) {
+            int maxInChildNode = max(child);
+           
+            // update max by maximum in child node - 
+           
+            max = Math.max(maxInChildNode, max);
+        }
+        // update max by comparing root node - 
+        max = Math.max(root.data, max);
+        
+        return max;
     }
 }
