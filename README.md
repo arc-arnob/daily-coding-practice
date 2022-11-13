@@ -3,7 +3,7 @@
 ### How to push your code: 
   1. use `touch concept_name-$(date +"%d-%m-%Y-%X").extension` / `mkdir concept_name-$(date +"%d-%m-%Y-%X")`
   2. `cd` to above directory if need
-  3. `touch` your source code here in moved to new directory
+  3. `touch` your source code here if moved to new directory
 
 ## Points to remember:
 1. If Concept Directory already exists, use that directory with above naming convention
