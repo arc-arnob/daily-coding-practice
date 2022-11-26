@@ -22,8 +22,8 @@ const findMinimumMazeTravel = (inputArray, n) => {
      memoTable[n-1][n-1] = inputArray[n-1][n-1]; // Smallest Problem...
      for(let i = n-1; i >= 0; i--){
           for(let j = n-2; j >= 0; j--){
-               if(i === n - 1) memoTable[i][j] += memoTable[i][j + 1];
-               else memoTable[i][j] += Math.min(memoTable[i][j + 1], memoTable[i+1][j]);
+               if(i === n - 1) memoTable[i][j] = inputArray[i][j] + memoTable[i][j + 1];
+               else memoTable[i][j] = inputArray[i][j] + Math.min(memoTable[i][j + 1], memoTable[i+1][j]);
           }
      }
      console.log(memoTable);
