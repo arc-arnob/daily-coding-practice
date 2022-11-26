@@ -17,15 +17,25 @@
  */
 const findMinimumMazeTravel = (inputArray, n) => {
      // Arrow Function vs normal function...
-     const memoTable = Array(n).fill(Array(n).fill(-1));
+     const memoTable = new Array();
+     for(let i =0; i < n; i++){
+          memoTable[i] = new Array(n).fill(-1);
+     }
      // Cost of most last cell is the cost of the cell it self;
      memoTable[n-1][n-1] = inputArray[n-1][n-1]; // Smallest Problem...
      for(let i = n-1; i >= 0; i--){
-          for(let j = n-2; j >= 0; j--){
-               if(i === n - 1) memoTable[i][j] = inputArray[i][j] + memoTable[i][j + 1];
-               else memoTable[i][j] = inputArray[i][j] + Math.min(memoTable[i][j + 1], memoTable[i+1][j]);
+          for(let j = n - 1; j >= 0; j--){
+               if( i === n-1 && j === n-1) continue;
+               if(i === n - 1) {
+                    memoTable[i][j] = inputArray[i][j] + memoTable[i][j + 1]; 
+               }
+               else if(j === n-1) memoTable[i][j] = inputArray[i][j] + memoTable[i+1][j];
+               else {
+                    memoTable[i][j] = inputArray[i][j] + Math.min(memoTable[i][j + 1], memoTable[i+1][j]);
+               }
           }
      }
+
      console.log(memoTable);
 };
 
