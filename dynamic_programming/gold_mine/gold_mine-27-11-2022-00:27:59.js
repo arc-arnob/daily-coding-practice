@@ -22,7 +22,7 @@ const goldMine = (inputArray, n) => {
         for(let j = n-2; j >= 0; j--){
             if(i === n-1) memoTable[i][j] = inputArray[i][j] + Math.max(memoTable[i-1][j+1], memoTable[i][j + 1]);
             else if( i === 0)  memoTable[i][j] = inputArray[i][j] + Math.max(memoTable[i+1][j+1], memoTable[i][j + 1]);
-            else  memoTable[i][j] = inputArray[i][j] + Math.max(memoTable[i-1][j+1], memoTable[i][j + 1], memoTable[i+1][j+1]);
+            else  memoTable[i][j] = inputArray[i][j] + Math.max(memoTable[i-1][j+1], Math.max(memoTable[i][j + 1], memoTable[i+1][j+1]));
         }
     }
     console.log(memoTable);
