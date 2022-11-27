@@ -1,12 +1,14 @@
 # Daily Coding Practice!
 ### Branch Naming Convention: `<concept>-description`
 ### How to push your code: 
-  1. use `touch concept_name-$(date +"%d-%m-%Y-%X").extension` / `mkdir concept_name-$(date +"%d-%m-%Y-%X")`
-  2. `cd` to above directory if need
-  3. `touch` your source code here if moved to new directory
+  1. If concept directory doesn't exist please make one using `mkdir <concept_name>` else use the existing directory
+  2. `CD` to appropriate directory and make your own file using `touch concept_name-$(date +"%d-%m-%Y-%X").extension`
+  3. If your practice is a multi file project, make subdirectories using `mkdir <concept_name>-$(date +"%d-%m-%Y-%X")` and `CD` to that directory and write your wonderful code.
+  4. Raise PR and assign a reviewer.
 
 ## Points to remember:
 1. If Concept Directory already exists, use that directory with above naming convention
 2. If your souce code needs more that one files/folder, you can `mkdir concept_name-$(date +"%d-%m-%Y-%X")` and work within that.
+3. This Repo is open to all and to anything that one wants to practice.
 
 `More to be added...`
