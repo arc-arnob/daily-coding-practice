@@ -13,8 +13,7 @@ class Node {
         this.next = null
     }  
 }
-
-class LinkedList {
+class LinkedList{
     constructor(){
         this.head = null;
         this.size = 0;
@@ -44,12 +43,4 @@ class LinkedList {
     }
 }
 
-// Driver
-const inputs = [1,2,3,4,5,6,7,8,9,10];
-
-const linkedList = new LinkedList();
-
-for(let i = 0; i < inputs.length; i++){
-    linkedList.add(inputs[i]);
-}
- linkedList.display();
+export default LinkedList;
