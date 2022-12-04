@@ -6,7 +6,7 @@
  * }
  */
 
-class Node {
+ class Node {
     constructor(element)
     {
         this.element = element;
@@ -34,6 +34,12 @@ class LinkedList{
         }
         this.size++
     }
+    removeFromHead(){
+        if(this.head === null) return;
+        let current = this.head;
+        this.head = current.next
+        current.next = null;
+    }
     display(){
         let current = this.head;
         while(current.next){
@@ -53,4 +59,7 @@ const linkedList = new LinkedList();
 for(let i = 0; i < inputs.length; i++){
     linkedList.add(inputs[i]);
 }
+linkedList.display();
+console.log("*********END*********")
+linkedList.removeFromHead();
 linkedList.display();
