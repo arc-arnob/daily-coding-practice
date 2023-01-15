@@ -32,15 +32,17 @@ const romanIntMapping = {
     500: "D",
     1000: "M"
 };
-const integerToRoman = (intValue) => { // 123
+const integerToRoman = (intValue) => { // 1999
     let romanNumber = "";
     while (intValue > 0) {
         // Q
-        const nearestNumber = findNearestNumber(intValue); // 101
-        const quotient = intValue / nearestNumber; // 1
-        intValue = intValue % nearestNumber; // 1
+        const nearestNumber = findNearestNumber(intValue); // 1000 // 999
+        console.log("nearest: ", nearestNumber);// 1000 // 500
+        const quotient = intValue / nearestNumber; // 1999 / 1000 => 1 // 999 / 500 => 1
+        intValue = intValue % nearestNumber; // 999 // 499
+        console.log(nearestNumber, Math.floor(quotient), intValue);
         for (let i = 1; i <= Math.floor(quotient); i++) {
-            romanNumber += romanIntMapping[nearestNumber];
+            romanNumber += romanIntMapping[nearestNumber]; // MD
         }
     }
     return romanNumber;
@@ -56,5 +58,7 @@ const findNearestNumber = (value) => {
     }
     return nearestNum
 }
+
+// console.log(findNearestNumber(999));
 
 console.log(integerToRoman(1999));
