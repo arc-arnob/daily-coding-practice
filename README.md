@@ -11,4 +11,12 @@
 2. If your souce code needs more that one files/folder, you can `mkdir concept_name-$(date +"%d-%m-%Y-%X")` and work within that.
 3. This Repo is open to all and to anything that one wants to practice.
 
+## Links To Personal Projects:
+| Project Name | Project Link | Status | Live Demo |
+|----------|----------|----------|----------|
+| Instagram Clone   | TDB | In Planning | -
+| End to End Prod Ready Demo Code  | TBD | In Planning | -
+
+
+
 `More to be added...`
