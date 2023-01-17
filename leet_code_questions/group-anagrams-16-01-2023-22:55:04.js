@@ -28,20 +28,21 @@ Constraints:
  */
 const groupAnagrams = (arr, map = new Map()) => {
     if (!arr.length) return [];
-    groupWords(arr, map);
-    return [...map.values()];
+    groupWords(arr, map); // Time: O(M * O(N * log(N))) | Space:  O(M * N)
+    return [...map.values()]; //  Time: O(M) | Space: O(M * N)
 }
 
 const groupWords = (arr, map) => {
-    for (const original of arr) {
-        const sorted = reorder(original);
-        const values = map.get(sorted) || [];
-        values.push(original);
-        map.set(sorted, values);
-        console.log("Map: ", map);
+    for (const original of arr) { // Time: O(M)
+        const sorted = reorder(original); // Time: O(N * log(N)) | Space: O(N)
+        const values = map.get(sorted) || []; // Time: ?
+        values.push(original); // Time: ?? | Space: O(M)
+        map.set(sorted, values); // Tinme: | Space: O(M * N)
     }
 }
-const reorder = (str) => str.split('')
-    .sort((a, b) => a.localeCompare(b)).join('');
+const reorder = (str) =>
+    str.split('') // Time O(N) | Space O(N)
+        .sort((a, b) => a.localeCompare(b)) // Time O(N * log(N)) | Space O(1 || log(K))
+        .join(''); // Time O(N) | Space O(N)
 
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
