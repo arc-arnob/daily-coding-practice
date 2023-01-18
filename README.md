@@ -14,6 +14,7 @@
 ## Links To Personal Projects:
 | Project Name | Project Link | Status | Live Demo |
 |----------|----------|----------|----------|
+| Flutter Word Pair Generator   | https://github.com/arc-arnob/Flutter-first-app | Done | -
 | Instagram Clone   | TDB | In Planning | -
 | End to End Prod Ready Demo Code  | TBD | In Planning | -
 | FM_V1(To be revealed later)  | https://github.com/arc-arnob/FM_V1 | In Progress | -
