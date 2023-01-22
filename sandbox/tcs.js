@@ -7,7 +7,7 @@ const countCheeseCakes = (str, q1_l, q1_r) => {
     let strArray = subString.split('');
     idxArray = [];
     for (let i = 0; i < strArray.length; i++) {
-        if (strArray[i] === '|') idxArray.push(i);
+        if (strArray[i] === '|') idxArray.push(i); // Space: O(N);
     }
     let cheeseCountSum = 0;
     for (let i = 0; i < idxArray.length - 1; i++) {
