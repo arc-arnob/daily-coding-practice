@@ -6,60 +6,59 @@
  * }
  */
 
- class Node {
-    constructor(element)
-    {
+class Node {
+    constructor(element) {
         this.element = element;
         this.next = null
-    }  
+    }
 }
-class LinkedList{
-    constructor(){
+class LinkedList {
+    constructor() {
         this.head = null;
         this.size = 0;
     }
-    add(data){
+    add(data) {
         let node = new Node(data);
         let current;
-        if(this.head === null){
+        if (this.head === null) {
             console.log("Called")
             this.head = node;
         }
-        else{
+        else {
             current = this.head;
-            while(current.next){
+            while (current.next) {
                 current = current.next;
             }
             current.next = node;
         }
         this.size++
     }
-    removeFromHead(){
-        if(this.head === null) return;
+    removeFromHead() {
+        if (this.head === null) return;
         let current = this.head;
         this.head = current.next
         current.next = null;
     }
-    fetchAValueFromLinkedList(data){
-        if(this.head === null) return;
+    fetchAValueFromLinkedList(data) {
+        if (this.head === null) return;
         let current = this.head;
-        while(current.next){
-            if(current.element === data){
+        while (current.next) {
+            if (current.element === data) {
                 console.log("Found: ", current);
                 return;
             }
             current = current.next;
         }
     }
-    addAtIndex(data, idx){
+    addAtIndex(data, idx) {
         const node = new Node(data);
-        if(idx === 0 && this.head){
+        if (idx === 0 && this.head) {
             this.head = node;
             return;
         }
         let current = this.head;
         let currentIdx = 0;
-        while(idx !== currentIdx){
+        while (idx !== currentIdx) {
             current = current.next;
             currentIdx++;
         }
@@ -67,9 +66,9 @@ class LinkedList{
         current.next = node;
         node.next = nextNode;
     }
-    display(){
+    display() {
         let current = this.head;
-        while(current.next){
+        while (current) {
             console.log(current);
             current = current.next;
         }
@@ -79,11 +78,11 @@ class LinkedList{
 // const LinkedList = require("./linked_list_add_element-03-12-2022-22:34:45")
 
 // Driver
-const inputs = [1,2,3,4,5,6,7,8,9,10];
+const inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const linkedList = new LinkedList();
 
-for(let i = 0; i < inputs.length; i++){
+for (let i = 0; i < inputs.length; i++) {
     linkedList.add(inputs[i]);
 }
 linkedList.display();
