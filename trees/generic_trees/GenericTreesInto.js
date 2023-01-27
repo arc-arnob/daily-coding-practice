@@ -27,7 +27,7 @@ var TreeNode = /** @class */ (function () {
     return TreeNode;
 }());
 // Input Array
-var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
+var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
 var GenericTree = /** @class */ (function () {
     function GenericTree() {
     }
@@ -73,9 +73,23 @@ var GenericTree = /** @class */ (function () {
         node.children.forEach(function (ele) { return treeSize += _this.size(ele); });
         return treeSize;
     };
+    GenericTree.prototype.findMaximum = function (node) {
+        var _this = this;
+        var maxVal = Number.MIN_VALUE;
+        node.children.forEach(function (ele) {
+            var cm = _this.findMaximum(ele);
+            if (cm > maxVal)
+                maxVal = cm;
+        });
+        if (node.data > maxVal) {
+            maxVal = node.data;
+        }
+        return maxVal;
+    };
     return GenericTree;
 }());
 var runCode = new GenericTree();
 var node = runCode.construct();
 // console.log("Display: ", runCode.display(node));
 console.log("Size: ", runCode.size(node));
+console.log("Max: ", runCode.findMaximum(node));

@@ -41,7 +41,7 @@ class TreeNode implements NodeStructure {
     children: TreeNode[];
 }
 // Input Array
-const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
+const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
 
 class GenericTree {
     // Generic Tree Formation.
@@ -85,9 +85,22 @@ class GenericTree {
         return treeSize;
 
     }
+
+    findMaximum(node: TreeNode): Number {
+        let maxVal: Number = Number.MIN_VALUE;
+        node.children.forEach(ele => {
+            let cm: Number = this.findMaximum(ele);
+            if (cm > maxVal) maxVal = cm;
+        });
+        if (node.data > maxVal) {
+            maxVal = node.data;
+        }
+        return maxVal;
+    }
 }
 
 const runCode = new GenericTree();
 let node: TreeNode = runCode.construct();
 // console.log("Display: ", runCode.display(node));
 console.log("Size: ", runCode.size(node));
+console.log("Max: ", runCode.findMaximum(node));
