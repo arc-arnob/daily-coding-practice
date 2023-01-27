@@ -89,9 +89,10 @@ class GenericTree {
     findMaximum(node: TreeNode): Number {
         let maxVal: Number = Number.MIN_VALUE;
         node.children.forEach(ele => {
-            let cm: Number = this.findMaximum(ele);
-            if (cm > maxVal) maxVal = cm;
+            let childMax: Number = this.findMaximum(ele);
+            if (childMax > maxVal) maxVal = childMax;
         });
+        // Compare current node with max of all children.
         if (node.data > maxVal) {
             maxVal = node.data;
         }
