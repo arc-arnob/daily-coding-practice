@@ -41,15 +41,14 @@ class TreeNode implements NodeStructure {
     children: TreeNode[];
 }
 // Input Array
-const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
+const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
 
-class DriverCode {
+class GenericTree {
     // Generic Tree Formation.
-    generateGenericTree(): void {
+    construct(): TreeNode {
         let root: TreeNode;
         const stackStorage = new Stack<TreeNode>();
         for (let i = 0; i < inputArray.length; i++) {
-            console.log("Stack Storage: ", stackStorage);
             if (inputArray[i] === -1) {
                 stackStorage.pop();
             } else {
@@ -65,8 +64,43 @@ class DriverCode {
                 stackStorage.push(node);
             }
         }
+        return root;
+    }
+
+    display(node: TreeNode): void {
+        // Traverse TreeNode Children.
+        node.children.forEach(ele => console.log(ele.data));
+        node.children.forEach(ele => this.display(ele));
+    }
+
+    size(node: TreeNode): number {
+        /**
+         * The binary + operator requires both operands to be of the Number primitive type or an enum type, 
+         * or at least one of the operands to be of type Any or the String primitive type
+         */
+        if (!node) return 0;
+        let treeSize: number = 1;
+        node.children.forEach(ele => treeSize += this.size(ele));
+
+        return treeSize;
+
+    }
+
+    findMaximum(node: TreeNode): Number {
+        let maxVal: Number = Number.MIN_VALUE;
+        node.children.forEach(ele => {
+            let cm: Number = this.findMaximum(ele);
+            if (cm > maxVal) maxVal = cm;
+        });
+        if (node.data > maxVal) {
+            maxVal = node.data;
+        }
+        return maxVal;
     }
 }
 
-const runCode = new DriverCode();
-runCode.generateGenericTree();
+const runCode = new GenericTree();
+let node: TreeNode = runCode.construct();
+// console.log("Display: ", runCode.display(node));
+console.log("Size: ", runCode.size(node));
+console.log("Max: ", runCode.findMaximum(node));

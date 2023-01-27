@@ -27,35 +27,69 @@ var TreeNode = /** @class */ (function () {
     return TreeNode;
 }());
 // Input Array
-var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
-var DriverCode = /** @class */ (function () {
-    function DriverCode() {
+var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
+var GenericTree = /** @class */ (function () {
+    function GenericTree() {
     }
     // Generic Tree Formation.
-    DriverCode.prototype.generateGenericTree = function () {
+    GenericTree.prototype.construct = function () {
         var root;
         var stackStorage = new Stack();
         for (var i = 0; i < inputArray.length; i++) {
-            console.log("Stack Storage: ", stackStorage);
             if (inputArray[i] === -1) {
                 stackStorage.pop();
             }
             else {
-                var node = new TreeNode();
-                node.data = inputArray[i];
-                node.children = [];
+                var node_1 = new TreeNode();
+                node_1.data = inputArray[i];
+                node_1.children = [];
                 if (stackStorage.size() > 0) {
                     var currentNode = stackStorage.peek();
-                    currentNode.children.push(node);
+                    currentNode.children.push(node_1);
                 }
                 else {
-                    root = node;
+                    root = node_1;
                 }
-                stackStorage.push(node);
+                stackStorage.push(node_1);
             }
         }
+        return root;
     };
-    return DriverCode;
+    GenericTree.prototype.display = function (node) {
+        var _this = this;
+        // Traverse TreeNode Children.
+        node.children.forEach(function (ele) { return console.log(ele.data); });
+        node.children.forEach(function (ele) { return _this.display(ele); });
+    };
+    GenericTree.prototype.size = function (node) {
+        var _this = this;
+        /**
+         * The binary + operator requires both operands to be of the Number primitive type or an enum type,
+         * or at least one of the operands to be of type Any or the String primitive type
+         */
+        if (!node)
+            return 0;
+        var treeSize = 1;
+        node.children.forEach(function (ele) { return treeSize += _this.size(ele); });
+        return treeSize;
+    };
+    GenericTree.prototype.findMaximum = function (node) {
+        var _this = this;
+        var maxVal = Number.MIN_VALUE;
+        node.children.forEach(function (ele) {
+            var cm = _this.findMaximum(ele);
+            if (cm > maxVal)
+                maxVal = cm;
+        });
+        if (node.data > maxVal) {
+            maxVal = node.data;
+        }
+        return maxVal;
+    };
+    return GenericTree;
 }());
-var runCode = new DriverCode();
-runCode.generateGenericTree();
+var runCode = new GenericTree();
+var node = runCode.construct();
+// console.log("Display: ", runCode.display(node));
+console.log("Size: ", runCode.size(node));
+console.log("Max: ", runCode.findMaximum(node));
