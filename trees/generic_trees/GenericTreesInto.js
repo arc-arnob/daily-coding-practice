@@ -28,34 +28,41 @@ var TreeNode = /** @class */ (function () {
 }());
 // Input Array
 var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
-var DriverCode = /** @class */ (function () {
-    function DriverCode() {
+var GenericTree = /** @class */ (function () {
+    function GenericTree() {
     }
     // Generic Tree Formation.
-    DriverCode.prototype.generateGenericTree = function () {
+    GenericTree.prototype.construct = function () {
         var root;
         var stackStorage = new Stack();
         for (var i = 0; i < inputArray.length; i++) {
-            console.log("Stack Storage: ", stackStorage);
             if (inputArray[i] === -1) {
                 stackStorage.pop();
             }
             else {
-                var node = new TreeNode();
-                node.data = inputArray[i];
-                node.children = [];
+                var node_1 = new TreeNode();
+                node_1.data = inputArray[i];
+                node_1.children = [];
                 if (stackStorage.size() > 0) {
                     var currentNode = stackStorage.peek();
-                    currentNode.children.push(node);
+                    currentNode.children.push(node_1);
                 }
                 else {
-                    root = node;
+                    root = node_1;
                 }
-                stackStorage.push(node);
+                stackStorage.push(node_1);
             }
         }
+        return root;
     };
-    return DriverCode;
+    GenericTree.prototype.display = function (node) {
+        var _this = this;
+        // Traverse TreeNode Children.
+        node.children.forEach(function (ele) { return console.log(ele.data); });
+        node.children.forEach(function (ele) { return _this.display(ele); });
+    };
+    return GenericTree;
 }());
-var runCode = new DriverCode();
-runCode.generateGenericTree();
+var runCode = new GenericTree();
+var node = runCode.construct();
+runCode.display(node);

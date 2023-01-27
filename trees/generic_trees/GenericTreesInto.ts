@@ -43,13 +43,12 @@ class TreeNode implements NodeStructure {
 // Input Array
 const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
 
-class DriverCode {
+class GenericTree {
     // Generic Tree Formation.
-    generateGenericTree(): void {
+    construct(): TreeNode {
         let root: TreeNode;
         const stackStorage = new Stack<TreeNode>();
         for (let i = 0; i < inputArray.length; i++) {
-            console.log("Stack Storage: ", stackStorage);
             if (inputArray[i] === -1) {
                 stackStorage.pop();
             } else {
@@ -65,8 +64,16 @@ class DriverCode {
                 stackStorage.push(node);
             }
         }
+        return root;
+    }
+
+    display(node: TreeNode): void {
+        // Traverse TreeNode Children.
+        node.children.forEach(ele => console.log(ele.data));
+        node.children.forEach(ele => this.display(ele));
     }
 }
 
-const runCode = new DriverCode();
-runCode.generateGenericTree();
+const runCode = new GenericTree();
+let node: TreeNode = runCode.construct();
+runCode.display(node);
