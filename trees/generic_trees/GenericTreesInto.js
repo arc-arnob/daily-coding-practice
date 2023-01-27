@@ -61,8 +61,21 @@ var GenericTree = /** @class */ (function () {
         node.children.forEach(function (ele) { return console.log(ele.data); });
         node.children.forEach(function (ele) { return _this.display(ele); });
     };
+    GenericTree.prototype.size = function (node) {
+        var _this = this;
+        /**
+         * The binary + operator requires both operands to be of the Number primitive type or an enum type,
+         * or at least one of the operands to be of type Any or the String primitive type
+         */
+        if (!node)
+            return 0;
+        var treeSize = 1;
+        node.children.forEach(function (ele) { return treeSize += _this.size(ele); });
+        return treeSize;
+    };
     return GenericTree;
 }());
 var runCode = new GenericTree();
 var node = runCode.construct();
-runCode.display(node);
+// console.log("Display: ", runCode.display(node));
+console.log("Size: ", runCode.size(node));
