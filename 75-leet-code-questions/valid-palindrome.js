@@ -27,7 +27,6 @@ const getValidPalindromeStatus = (str) => {
     str = str.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
     let ptr_1 = 0;
     let ptr_2 = str.length - 1;
-    console.log("haha: ", str);
     const halfLen = Math.floor(str.length / 2);
     while (ptr_1 <= halfLen) {
         if (str.charAt(ptr_1) !== str.charAt(ptr_2)) return false;
