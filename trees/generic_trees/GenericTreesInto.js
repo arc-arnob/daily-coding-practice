@@ -77,14 +77,32 @@ var GenericTree = /** @class */ (function () {
         var _this = this;
         var maxVal = Number.MIN_VALUE;
         node.children.forEach(function (ele) {
-            var cm = _this.findMaximum(ele);
-            if (cm > maxVal)
-                maxVal = cm;
+            var childMax = _this.findMaximum(ele);
+            if (childMax > maxVal)
+                maxVal = childMax;
         });
+        // Compare current node with max of all children.
         if (node.data > maxVal) {
             maxVal = node.data;
         }
         return maxVal;
+    };
+    /**
+     *
+     * Expectation: Our expectation from height(node) is that it will find the distance between root (10) and the node with maximum depth (110) in terms of edges and return this distance as the height of the tree.
+        Faith: Our faith is that we get the height of all the root's children nodes (20-1, 30-2 and 40-1)
+        How to meet Expectation with Faith: If we add 1 to the maximum height (30-2) then we get the resultant height (2+1=3)
+     *
+     */
+    GenericTree.prototype.findHeight = function (node) {
+        var _this = this;
+        var height = -1;
+        node.children.forEach(function (ele) {
+            var childHeight = _this.findHeight(ele);
+            height = Math.max(height, childHeight);
+        });
+        height += 1;
+        return height;
     };
     return GenericTree;
 }());
@@ -93,3 +111,4 @@ var node = runCode.construct();
 // console.log("Display: ", runCode.display(node));
 console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
+console.log("Tree Height: ", runCode.findHeight(node));
