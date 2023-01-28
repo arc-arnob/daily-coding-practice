@@ -1,4 +1,4 @@
-import { BinaryTree, TreeNodeStructure } from "./tree-setup"
+import { TreeNodeStructure, BinaryTree } from "./tree-setup";
 
 // Invert a binary tree
 const invertBinaryTree = (node: TreeNodeStructure) => {

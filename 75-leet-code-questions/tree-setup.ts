@@ -1,4 +1,4 @@
-interface TreeNodeStructure {
+export interface TreeNodeStructure {
     value: number,
     left: TreeNodeStructure | undefined,
     right: TreeNodeStructure | undefined,
@@ -15,7 +15,7 @@ class TreeNode implements TreeNodeStructure {
     }
 }
 
-class BinaryTree {
+export class BinaryTree {
     root: TreeNode;
 
     constructor() {
