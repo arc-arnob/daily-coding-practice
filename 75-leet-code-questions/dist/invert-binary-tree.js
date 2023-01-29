@@ -1,6 +1,4 @@
-"use strict";
-exports.__esModule = true;
-var tree_setup_1 = require("./tree-setup");
+import { BinaryTree } from "./tree-setup";
 // Invert a binary tree
 var invertBinaryTree = function (node) {
     var _a;
@@ -10,7 +8,7 @@ var invertBinaryTree = function (node) {
     invertBinaryTree(node.left);
     invertBinaryTree(node.right);
 };
-var binaryTree = new tree_setup_1.BinaryTree();
+var binaryTree = new BinaryTree();
 binaryTree.insert(10);
 binaryTree.insert(5);
 binaryTree.insert(15);
@@ -19,3 +17,4 @@ binaryTree.insert(7);
 binaryTree.insert(12);
 binaryTree.insert(20);
 binaryTree.display();
+//# sourceMappingURL=invert-binary-tree.js.map
