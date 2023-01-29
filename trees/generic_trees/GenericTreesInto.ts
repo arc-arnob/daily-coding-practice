@@ -6,6 +6,42 @@ interface IStack<T> {
     size(): number;
 }
 
+interface IQueue<T> {
+    enqueue(item: T): void;
+    dequeue(): T | undefined;
+    head(): T | undefined;
+    tail(): T | undefined;
+    size(): number;
+}
+
+class Queue<T> implements IQueue<T> {
+    private storage: T[] = [];
+
+    constructor(private capacity: number = Infinity) { }
+
+    enqueue(item: T): void {
+        if (this.size() === this.capacity) {
+            throw Error("Queue has reached max capacity, you cannot add more items");
+        }
+        this.storage.push(item);
+    }
+
+    dequeue(): T | undefined {
+        return this.storage.shift();
+    }
+
+    head(): T | undefined {
+        return this.storage[0];
+    }
+
+    tail(): T | undefined {
+        return this.storage[this.size() - 1];
+    }
+    size(): number {
+        return this.storage.length;
+    }
+}
+
 class Stack<T> implements IStack<T> {
     private storage: T[] = [];
 
@@ -114,6 +150,26 @@ class GenericTree {
         height += 1;
         return height;
     }
+
+    levelOrderTraversal(root: TreeNode) {
+        // Remove, Print, Add
+        // Algo: 
+        /**
+         * 1. Declare a queue
+         * 2. Add Current node to Queue
+         * 3. Pop, print and add all children to Queue
+         */
+        const auxilaryQueue = new Queue<TreeNode>();
+        auxilaryQueue.enqueue(root);
+        while (auxilaryQueue.size() > 0) {
+            node = auxilaryQueue.dequeue();
+            console.log(node.data + " ");
+            node.children.forEach(child => {
+                auxilaryQueue.enqueue(child);
+            })
+        }
+
+    }
 }
 
 const runCode = new GenericTree();
@@ -122,3 +178,4 @@ let node: TreeNode = runCode.construct();
 console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
 console.log("Tree Height: ", runCode.findHeight(node));
+runCode.levelOrderTraversal(node);

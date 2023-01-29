@@ -1,3 +1,29 @@
+var Queue = /** @class */ (function () {
+    function Queue(capacity) {
+        if (capacity === void 0) { capacity = Infinity; }
+        this.capacity = capacity;
+        this.storage = [];
+    }
+    Queue.prototype.enqueue = function (item) {
+        if (this.size() === this.capacity) {
+            throw Error("Queue has reached max capacity, you cannot add more items");
+        }
+        this.storage.push(item);
+    };
+    Queue.prototype.dequeue = function () {
+        return this.storage.shift();
+    };
+    Queue.prototype.head = function () {
+        return this.storage[0];
+    };
+    Queue.prototype.tail = function () {
+        return this.storage[this.size() - 1];
+    };
+    Queue.prototype.size = function () {
+        return this.storage.length;
+    };
+    return Queue;
+}());
 var Stack = /** @class */ (function () {
     function Stack(capacity) {
         if (capacity === void 0) { capacity = Infinity; }
@@ -104,6 +130,24 @@ var GenericTree = /** @class */ (function () {
         height += 1;
         return height;
     };
+    GenericTree.prototype.levelOrderTraversal = function (root) {
+        // Remove, Print, Add
+        // Algo: 
+        /**
+         * 1. Declare a queue
+         * 2. Add Current node to Queue
+         * 3. Pop, print and add all children to Queue
+         */
+        var auxilaryQueue = new Queue();
+        auxilaryQueue.enqueue(root);
+        while (auxilaryQueue.size() > 0) {
+            node = auxilaryQueue.dequeue();
+            console.log(node.data + " ");
+            node.children.forEach(function (child) {
+                auxilaryQueue.enqueue(child);
+            });
+        }
+    };
     return GenericTree;
 }());
 var runCode = new GenericTree();
@@ -112,3 +156,4 @@ var node = runCode.construct();
 console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
 console.log("Tree Height: ", runCode.findHeight(node));
+runCode.levelOrderTraversal(node);
