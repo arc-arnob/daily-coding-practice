@@ -53,7 +53,7 @@ var TreeNode = /** @class */ (function () {
     return TreeNode;
 }());
 // Input Array
-var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1];
+var inputArray = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 120, -1, -1, 90, -1, -1, 40, 100, -1, -1, -1];
 var GenericTree = /** @class */ (function () {
     function GenericTree() {
     }
@@ -148,6 +148,24 @@ var GenericTree = /** @class */ (function () {
             });
         }
     };
+    // Print level order in each line.
+    GenericTree.prototype.levelOrderLineWise = function (root) {
+        var primaryQueue = new Queue;
+        primaryQueue.enqueue(root);
+        var childQueue = new Queue;
+        // process.stdout.write("Welcome to GeeksforGeeks! ");
+        while (primaryQueue.size()) {
+            var currentNode = primaryQueue.dequeue();
+            console.log(currentNode.children);
+            currentNode.children.forEach(function (child) {
+                childQueue.enqueue(child);
+            });
+            if (primaryQueue.size() === 0) {
+                primaryQueue = childQueue;
+                childQueue = new Queue;
+            }
+        }
+    };
     return GenericTree;
 }());
 var runCode = new GenericTree();
@@ -157,3 +175,4 @@ console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
 console.log("Tree Height: ", runCode.findHeight(node));
 runCode.levelOrderTraversal(node);
+runCode.levelOrderLineWise(node);

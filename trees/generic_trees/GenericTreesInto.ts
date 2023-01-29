@@ -77,7 +77,7 @@ class TreeNode implements NodeStructure {
     children: TreeNode[];
 }
 // Input Array
-const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 1110, 120, -1, 80, -1, 90, -1, -1, 40, -1, -1, -1]
+const inputArray: Number[] = [10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, 120, -1, 120, -1, -1, 90, -1, -1, 40, 100, -1, -1, -1]
 
 class GenericTree {
     // Generic Tree Formation.
@@ -170,6 +170,26 @@ class GenericTree {
         }
 
     }
+
+    // Print level order in each line.
+    levelOrderLineWise(root: TreeNode) {
+        let primaryQueue = new Queue<TreeNode>;
+        primaryQueue.enqueue(root);
+        let childQueue = new Queue<TreeNode>;
+        // process.stdout.write("Welcome to GeeksforGeeks! ");
+        while (primaryQueue.size()) {
+            const currentNode: TreeNode = primaryQueue.dequeue();
+            console.log(currentNode.children);
+            currentNode.children.forEach(child => {
+                childQueue.enqueue(child);
+            })
+            if (primaryQueue.size() === 0) {
+                primaryQueue = childQueue;
+                childQueue = new Queue<TreeNode>;
+            }
+        }
+
+    }
 }
 
 const runCode = new GenericTree();
@@ -178,4 +198,5 @@ let node: TreeNode = runCode.construct();
 console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
 console.log("Tree Height: ", runCode.findHeight(node));
-runCode.levelOrderTraversal(node);
+// runCode.levelOrderTraversal(node);
+runCode.levelOrderLineWise(node);
