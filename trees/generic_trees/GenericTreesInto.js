@@ -174,5 +174,5 @@ var node = runCode.construct();
 console.log("Size: ", runCode.size(node));
 console.log("Max: ", runCode.findMaximum(node));
 console.log("Tree Height: ", runCode.findHeight(node));
-runCode.levelOrderTraversal(node);
+// runCode.levelOrderTraversal(node);
 runCode.levelOrderLineWise(node);
