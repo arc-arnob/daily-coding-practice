@@ -16,32 +16,33 @@ Return the modified image after performing the flood fill.
 
 const floodFillRecursive = (image: number[][], sr: number, sc: number, color: number, newColor: number): number[][] => {
     if (sr < 0 || sc < 0) return;
-    if (sc > image[0].length || sr > image.length) return;
-    if (image[sr][sc] < 0) {
-        image[sr][sc] = color;
-        return;
-    }
+    if (sc >= image[0].length || sr >= image.length) return;
+    // Marker that the current cell is being considered
+    if (image[sr][sc] < 0) return;
+    if (image[sr][sc] !== color) return;
+
     if (image[sr][sc] === color) {
-        image[sr][sc] = -1 * image[sr][sc];
+        image[sr][sc] === 0 ? image[sr][sc] = -1
+            : image[sr][sc] = -1 * image[sr][sc];
 
         floodFillRecursive(image, sr, sc + 1, color, newColor);
         floodFillRecursive(image, sr - 1, sc, color, newColor);
         floodFillRecursive(image, sr + 1, sc, color, newColor);
         floodFillRecursive(image, sr, sc - 1, color, newColor);
 
-        image[sr][sc] = -1 * image[sr][sc];
+        image[sr][sc] = newColor;
     }
 }
 const floodFill = (image: number[][], sr: number, sc: number, color: number): number[][] => {
-    if (image[sr][sc] != color) floodFillRecursive(image, sr, sc, image[sr][sc], color)
+    if (image[sr][sc] !== color) floodFillRecursive(image, sr, sc, image[sr][sc], color)
     return image;
 
 }
 
 
-const image: number[][] = [[1, 1, 1], [1, 1, 0], [1, 0, 1]];
+const image: number[][] = [[0, 0, 0], [0, 0, 0]];
 const sr: number = 1;
-const sc: number = 1;
+const sc: number = 0;
 const color: number = 2;
 
-floodFill(image, sr, sc, color);
+console.log(floodFill(image, sr, sc, color));

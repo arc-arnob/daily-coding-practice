@@ -16,28 +16,30 @@ Return the modified image after performing the flood fill.
 var floodFillRecursive = function (image, sr, sc, color, newColor) {
     if (sr < 0 || sc < 0)
         return;
-    if (sc > image[0].length || sr > image.length)
+    if (sc >= image[0].length || sr >= image.length)
         return;
-    if (image[sr][sc] < 0) {
-        image[sr][sc] = color;
+    // Marker that the current cell is being considered
+    if (image[sr][sc] < 0)
         return;
-    }
+    if (image[sr][sc] !== color)
+        return;
     if (image[sr][sc] === color) {
-        image[sr][sc] = -1 * image[sr][sc];
+        image[sr][sc] === 0 ? image[sr][sc] = -1
+            : image[sr][sc] = -1 * image[sr][sc];
         floodFillRecursive(image, sr, sc + 1, color, newColor);
         floodFillRecursive(image, sr - 1, sc, color, newColor);
         floodFillRecursive(image, sr + 1, sc, color, newColor);
         floodFillRecursive(image, sr, sc - 1, color, newColor);
-        image[sr][sc] = -1 * image[sr][sc];
+        image[sr][sc] = newColor;
     }
 };
 var floodFill = function (image, sr, sc, color) {
-    if (image[sr][sc] != color)
+    if (image[sr][sc] !== color)
         floodFillRecursive(image, sr, sc, image[sr][sc], color);
     return image;
 };
-var image = [[1, 1, 1], [1, 1, 0], [1, 0, 1]];
+var image = [[0, 0, 0], [0, 0, 0]];
 var sr = 1;
-var sc = 1;
+var sc = 0;
 var color = 2;
-floodFill(image, sr, sc, color);
+console.log(floodFill(image, sr, sc, color));
