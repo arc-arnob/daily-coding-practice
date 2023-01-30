@@ -1,3 +1,6 @@
+"use strict";
+exports.__esModule = true;
+exports.BinaryTree = void 0;
 var TreeNode = /** @class */ (function () {
     function TreeNode(value) {
         this.value = value;
@@ -53,5 +56,4 @@ var BinaryTree = /** @class */ (function () {
     };
     return BinaryTree;
 }());
-export { BinaryTree };
-//# sourceMappingURL=tree-setup.js.map
+exports.BinaryTree = BinaryTree;
