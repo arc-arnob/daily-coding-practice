@@ -66,6 +66,8 @@ export class BinaryTree {
 
 
 const isBalanced = (root: TreeNodeStructure | null): boolean => {
+    // Empty Tree check
+    if (!root) return true;
     const isBalanced: boolean = true;
     const result: number = checkTreeBalanced(root, isBalanced);
     if (result) return true;
@@ -74,13 +76,13 @@ const isBalanced = (root: TreeNodeStructure | null): boolean => {
 };
 
 const checkTreeBalanced = (root: TreeNodeStructure, isBalanced: boolean): number => {
-    if (!root || !isBalanced) return 0;
+    if (!root) return;
 
     const leftHeight: number = checkTreeBalanced(root.left, isBalanced);
     const rightHeight: number = checkTreeBalanced(root.right, isBalanced);
 
     if (Math.abs(leftHeight - rightHeight) > 1) {
-        isBalanced = false;
+        return 0;
     }
 
     return Math.max(leftHeight, rightHeight) + 1;
