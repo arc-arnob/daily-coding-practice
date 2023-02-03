@@ -22,7 +22,7 @@ export class BinaryTree {
         this.root = null;
     }
 
-    insert(value: number): void {
+    insert(value: number): TreeNode {
         // Create a New Node
         // if root is null, make new node as root and return
         // else check left child and right child
@@ -51,6 +51,7 @@ export class BinaryTree {
                 currentNode = currentNode.right;
             }
         }
+        return this.root;
     }
     display() {
         this.inOrderTraversal(this.root);
@@ -82,10 +83,22 @@ const checkTreeBalanced = (root: TreeNodeStructure, isBalanced: boolean): number
     const rightHeight: number = checkTreeBalanced(root.right, isBalanced);
 
     if (Math.abs(leftHeight - rightHeight) > 1) {
-        return 0;
+        isBalanced = false;
     }
 
     return Math.max(leftHeight, rightHeight) + 1;
+}
 
 
-}   
+const binaryTree = new BinaryTree();
+console.log(binaryTree);
+binaryTree.insert(10);
+binaryTree.insert(5);
+binaryTree.insert(15);
+binaryTree.insert(2);
+binaryTree.insert(7);
+binaryTree.insert(12);
+binaryTree.insert(20);
+
+
+binaryTree.display();
