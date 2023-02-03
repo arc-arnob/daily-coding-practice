@@ -50,12 +50,12 @@ var pusedoQueue = /** @class */ (function () {
     }
     // O(N)
     pusedoQueue.prototype.push = function (x) {
-        while (!this.primaryStack) {
+        while (this.primaryStack.size()) {
             var shiftingElement = this.primaryStack.pop();
             this.auxilaryStack.push(shiftingElement);
         }
         this.primaryStack.push(x);
-        while (!this.auxilaryStack) {
+        while (this.auxilaryStack.size()) {
             var shiftingElement = this.auxilaryStack.pop();
             this.primaryStack.push(shiftingElement);
         }

@@ -74,12 +74,12 @@ class pusedoQueue {
     }
     // O(N)
     push(x: number): void {
-        while (!this.primaryStack) {
+        while (this.primaryStack.size()) {
             const shiftingElement = this.primaryStack.pop();
             this.auxilaryStack.push(shiftingElement);
         }
         this.primaryStack.push(x);
-        while (!this.auxilaryStack) {
+        while (this.auxilaryStack.size()) {
             const shiftingElement = this.auxilaryStack.pop();
             this.primaryStack.push(shiftingElement);
         }
