@@ -46,12 +46,37 @@ class LinkedLst {
 
         return this.head;
     }
+    createCircularLinkedList(value: number): void {
+        const toNode = new ListNode(value);
+        let currentNode = this.head;
+        let toBeConnectedNode = null;
+        if (!currentNode) return
+        while (currentNode.next) {
+            if (currentNode.data == toNode.data) {
+                toBeConnectedNode = currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+        if (toBeConnectedNode) currentNode.next = toBeConnectedNode;
+
+    };
     display(): void {
         let current = this.head;
-        while (current.data) {
+        while (current && current.data) {
             console.log(current.data);
             current = current.next;
         }
+    }
+    detectCircularLinking(): boolean {
+        // Space: O(N)
+        const hashMap = new Set();
+        let currentNode = this.head;
+        while (currentNode.next) {
+            if (hashMap.has(currentNode)) return true;
+            hashMap.add(currentNode);
+            currentNode = currentNode.next;
+        }
+        return false;
     }
 }
 
@@ -62,4 +87,7 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(6);
 
-linkedList.display()
+linkedList.createCircularLinkedList(4);
+
+console.log(linkedList.detectCircularLinking());
+// linkedList.display()
