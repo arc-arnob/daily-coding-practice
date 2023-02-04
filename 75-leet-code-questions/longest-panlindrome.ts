@@ -13,6 +13,8 @@ Explanation: One longest palindrome that can be built is "dccaccd", whose length
 
  */
 
+// INCOMPLETE
+
 const longestPalindrome = (s: string): number => {
     const mapping = {};
     const chars: string[] = s.split("");
