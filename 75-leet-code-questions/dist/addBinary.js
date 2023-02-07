@@ -9,11 +9,15 @@ var getNumberFromBinary = function (strArray) {
     }
     var decimalNumber = 0;
     for (var i in strArray) {
-        decimalNumber = parseInt(strArray[i]) * (Math.pow(2, strLen) - parseInt(i));
+        decimalNumber += parseInt(strArray[i]) * (Math.pow(2, ((strLen - 1) - parseInt(i))));
     }
     return decimalNumber;
 };
 var getBinaryStringFormNumber = function (value) {
+    if (value === 1)
+        return '1';
+    if (value === 0)
+        return '0';
     var binaryString = '';
     while (value) {
         var bit = value % 2 + '';
@@ -22,4 +26,6 @@ var getBinaryStringFormNumber = function (value) {
     }
     return binaryString.split('').reverse().join('');
 };
-console.log(addBinary('1010', '1011'));
+console.log(getNumberFromBinary(['1']));
+console.log(getNumberFromBinary(['0']));
+console.log(addBinary('1', '0'));
