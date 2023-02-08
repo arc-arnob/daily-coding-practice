@@ -70,14 +70,25 @@ var LinkedLst = /** @class */ (function () {
         }
         return false;
     };
+    LinkedLst.prototype.middleOfList = function () {
+        var currentNode = this.head;
+        var ffPointer = currentNode;
+        while (ffPointer && ffPointer.next && ffPointer.next.next) {
+            currentNode = currentNode.next;
+            ffPointer = ffPointer.next.next;
+        }
+        this.head = currentNode;
+    };
     return LinkedLst;
 }());
 var linkedList = new LinkedLst();
+linkedList.add(1);
 linkedList.add(2);
 linkedList.add(3);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(6);
-linkedList.createCircularLinkedList(4);
-console.log(linkedList.detectCircularLinking());
-// linkedList.display()
+linkedList.middleOfList();
+// linkedList.createCircularLinkedList(4);
+// console.log(linkedList.detectCircularLinking());
+linkedList.display();
