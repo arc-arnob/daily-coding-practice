@@ -13,8 +13,8 @@ Explanation: The subarray [4,-1,2,1] has the largest sum 6.
 // Kadane Algorithm;
 
 function maxSubArray(nums: number[]): number { //[-2, -1, -3]
-    const minimimNegativeVal = Number.MIN_VALUE;
-    let max_value = - minimimNegativeVal - 1
+    const minimimNegativeVal = Math.pow(2, 53)
+    let max_value = -minimimNegativeVal - 1
     let max_so_far = 0;
     nums.forEach(ele => {
         max_so_far = max_so_far + ele;
@@ -24,5 +24,5 @@ function maxSubArray(nums: number[]): number { //[-2, -1, -3]
     return max_value;
 };
 
-console.log(maxSubArray([-2, -1, -3, 9]));
+console.log(maxSubArray([-3, -2, -2, -3]));
 
