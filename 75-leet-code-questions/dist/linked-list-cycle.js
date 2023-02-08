@@ -73,7 +73,7 @@ var LinkedLst = /** @class */ (function () {
     LinkedLst.prototype.middleOfList = function () {
         var currentNode = this.head;
         var ffPointer = currentNode;
-        while (ffPointer && ffPointer.next && ffPointer.next.next) {
+        while (ffPointer && ffPointer.next) {
             currentNode = currentNode.next;
             ffPointer = ffPointer.next.next;
         }
