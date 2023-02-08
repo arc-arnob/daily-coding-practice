@@ -78,16 +78,30 @@ class LinkedLst {
         }
         return false;
     }
+
+    middleOfList(): void {
+        let currentNode = this.head;
+        let ffPointer = currentNode;
+        while (ffPointer && ffPointer.next) {
+            currentNode = currentNode.next;
+            ffPointer = ffPointer.next.next;
+        }
+        this.head = currentNode;
+    }
 }
 
 const linkedList = new LinkedLst();
+linkedList.add(1);
 linkedList.add(2);
 linkedList.add(3);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(6);
 
-linkedList.createCircularLinkedList(4);
+linkedList.middleOfList();
 
-console.log(linkedList.detectCircularLinking());
-// linkedList.display()
+
+// linkedList.createCircularLinkedList(4);
+
+// console.log(linkedList.detectCircularLinking());
+linkedList.display()
