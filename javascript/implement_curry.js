@@ -82,3 +82,26 @@ let printCarDetailsLater = printCarDetailsWithLocation.bind(car2, "delhi", "Delh
 console.log(printCarDetailsLater); // Prints the function
 
 console.log(printCarDetailsLater()); // Executes the function.
+
+
+// *********************** CURRY ************************
+
+const join = (a, b, c) => {
+    return `${a}_${b}_${c}`
+}
+const curriedJoin = curry(join);
+
+function curry(func) {
+    return function curried(...args) {
+        if (args.length >= func.length) {
+            return func.apply(this, args);
+        } else {
+            return curried.bind(this, ...args);
+        }
+    }
+}
+console.log(curriedJoin(1, 2, 3)) // '1_2_3'
+
+console.log(curriedJoin(1)(2, 3)) // '1_2_3'
+
+console.log(curriedJoin(1, 2)(3));
