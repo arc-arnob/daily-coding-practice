@@ -1,0 +1,48 @@
+body {
+    display: grid;
+    gap: 20px;
+    grid-template-rows: repeat(3, 2fr);
+    grid-auto-flow: column;
+}
+
+.container {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+
+@media only screen and (max-width: 200px) {
+    .title {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 400px) {
+    .title {
+        font-size: 8vw;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .title {
+        font-size: 32px;
+    }
+}
+
+.item {
+    height: 50px;
+    background-color: #7aa4f0;
+}
+
+.bfe-23 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+    gap: 10px;
+}
+
+.bfe-22 {
+    display: grid;
+    grid-template-rows: repeat(3, 2fr);
+    grid-auto-flow: column;
+    gap: 10px;
+}

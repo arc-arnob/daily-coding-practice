@@ -1,0 +1,31 @@
+/* p {
+    width: 100px;
+    height: 50px;
+    padding: 20px;
+    border: 1px solid;
+} */
+
+.awesome {
+    text-transform: uppercase;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    border: 5px solid;
+    padding: 2rem;
+
+    /* The important extrinsic width */
+    width: 320px;
+}
+
+.awesome[data-sizing="intrinsic"] {
+    width: min-content;
+}
+
+/*
+  
+  
+  Presentational styles 
+  */
+.awesome {
+    --flow-space: 2rem;
+}
