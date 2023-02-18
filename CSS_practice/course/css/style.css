@@ -22,3 +22,18 @@ li:only-child {
 td:only-child {
     color: purple
 }
+
+/* Child selector */
+.parent>p {
+    color: red;
+}
+
+/* Adjacent Selector */
+.parent+p {
+    color: lightsalmon
+}
+
+/* Next Siblings Selector */
+.parent~h1 {
+    color: purple
+}
