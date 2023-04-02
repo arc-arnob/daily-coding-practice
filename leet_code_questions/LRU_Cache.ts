@@ -59,6 +59,8 @@ class LRUCache {
             if(temp) temp.prev = null;
             this.LRU = temp;
             
+        }else{
+            // 
         }
         this._remove(this.cache[key]);
         this._insert(this.cache[key]);
