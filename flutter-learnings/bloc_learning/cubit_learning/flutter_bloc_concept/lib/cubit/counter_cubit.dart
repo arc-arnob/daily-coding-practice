@@ -1,12 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_concept/constants/enums.dart';
 import 'package:flutter_bloc_concept/cubit/internet_cubit.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'counter_state.dart';
 
-class CounterCubit extends Cubit<CounterState> {
+class CounterCubit extends Cubit<CounterState> with HydratedMixin {
   final InternetCubit internetCubit;
 
   late StreamSubscription internetStreamSub;
@@ -37,5 +39,15 @@ class CounterCubit extends Cubit<CounterState> {
   close() {
     internetStreamSub.cancel();
     return super.close();
+  }
+
+  @override
+  CounterState fromJson(Map<String, dynamic> json) {
+    return CounterState.fromMap(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(CounterState state) {
+    return state.toMap();
   }
 }
