@@ -50,14 +50,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             BlocBuilder<InternetCubit, InternetState>(
               builder: (context, state) {
-                print("TANNNNNN ${state}");
                 if (state is InternetLoading) {
                   return const CircularProgressIndicator();
                 }
@@ -116,6 +107,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            // context Watch
+            Builder(builder: (context) {
+              final counterState = context.watch<CounterCubit>().state;
+              final internetState = context.watch<InternetCubit>().state;
+              if (internetState is InternetConnected &&
+                  internetState.connectionType == ConnectionType.mobile) {
+                return Text(
+                  'Counter: ${counterState.counterValue.toString()} Internet: Mobile',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                );
+              } else if (internetState is InternetConnected &&
+                  internetState.connectionType == ConnectionType.wifi) {
+                return Text(
+                  'Counter: ${counterState.counterValue.toString()} Internet: Wifi',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                );
+              } else {
+                return Text(
+                  'Counter: ${counterState.counterValue.toString()} Internet: No Interntet',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                );
+              }
+            })
           ],
         ),
       ),
