@@ -37,15 +37,24 @@ function threeSum(nums) {
     var result = [];
     nums.sort(function (a, b) { return a - b; });
     for (var i = 0; i < nums.length; i++) {
+        if (i > 0 && nums[i] == nums[i - 1]) {
+            continue;
+        }
         var nums_i = nums[i];
         var j = i + 1;
         var k = nums.length - 1;
         while (j < k) {
-            console.log(nums_i, nums[j], nums[k]);
             if (nums[j] + nums[k] + nums_i === 0) {
                 result.push([nums_i, nums[j], nums[k]]);
+                while (j < k && nums[j] == nums[j + 1])
+                    j++;
+                while (j < k && nums[k] == nums[k - 1])
+                    k--;
                 j++;
                 k--;
+            }
+            else if (nums[j] + nums[k] + nums_i < 0) {
+                j++;
             }
             else {
                 k--;
